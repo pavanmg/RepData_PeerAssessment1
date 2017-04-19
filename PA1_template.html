@@ -322,6 +322,7 @@ imputeMissingData$day &lt;- as.factor(imputeMissingData$day)
 imputeMissingData$dayClassification &lt;- ifelse(weekdays(imputeMissingData$date) %in% c(&quot;Saturday&quot;, &quot;Sunday&quot;), &quot;weekend&quot;, &quot;weekday&quot;)
 imputeMissingData$dayClassification &lt;- as.factor(imputeMissingData$dayClassification)
 
+## coverting steps to integers
 
 lapply(imputeMissingData,class)</code></pre>
 <pre><code>## $steps
