@@ -201,7 +201,8 @@ imputeMissingData$dayClassification <- as.factor(imputeMissingData$dayClassifica
 
 lapply(imputeMissingData,class)
 
-
+```
+```{r, eval=FALSE, include=FALSE}
 
 ggplot(imputeMissingData, aes(x=interval, y=steps)) + 
         geom_line(color="red") + 
