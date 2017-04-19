@@ -210,7 +210,10 @@ week_and_weekend_data <- aggregate( imputeMissingData$steps,by = list(interval =
 
 colnames(week_and_weekend_data) <- c("interval","week","steps")
 
-ggplot(a, aes(interval, steps)) + 
+week_and_weekend_data$interval <- as.integer(week_and_weekend_data$interval)
+week_and_weekend_data$week <- as.character(week_and_weekend_data$week)
+
+ggplot(week_and_weekend_data, aes(interval, steps)) + 
         geom_line(color="red") + 
         facet_wrap(~week , ncol = 1, nrow = 2) +
         labs(x="Interval") + labs(y="Number of steps") +
