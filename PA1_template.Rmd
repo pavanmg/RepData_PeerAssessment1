@@ -203,11 +203,27 @@ imputeMissingData$dayClassification <- as.factor(imputeMissingData$dayClassifica
 lapply(imputeMissingData,class)
 
 ```
+
 ```{r, echo=TRUE, dpi=36, out.height="600px", out.width="600px"}
 
-ggplot(imputeMissingData, aes(x=interval, y=steps)) + 
+week_and_weekend_data <- aggregate( imputeMissingData$steps,by = list(interval = imputeMissingData$interval,week =imputeMissingData$dayClassification),FUN=mean, na.rm=TRUE)
+
+colnames(week_and_weekend_data) <- c("interval","week","steps")
+
+ggplot(a, aes(interval, steps)) + 
         geom_line(color="red") + 
-        facet_wrap(~ dayClassification, nrow=2, ncol=1) +
-        labs(x="Interval", y="Number of steps") +
+        facet_wrap(~week , ncol = 1, nrow = 2) +
+        labs(x="Interval") + labs(y="Number of steps") +
+        labs(title = "week_and_weekend_data") +
         theme_bw()
+```
+
+
+
+
+
+```{r, include=FALSE}
+   # add this chunk to end of mycode.rmd
+
+file.copy(from="PA1_template.rmd", to="PA1_template.md")
 ```
