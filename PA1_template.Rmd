@@ -7,7 +7,8 @@ keep_md: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE , fig.path = 'figures/' )
+knitr::opts_chunk$set(echo = TRUE , fig.path = 'figures/',dev="png" )
+
 ```
 
 
@@ -44,7 +45,7 @@ tail(TotalnumStepsPerday)
 ```
 ## What is the average daily activity pattern?
 
-```{r}
+```{r, dpi=36, out.height="600px", out.width="600px"}
 library(ggplot2)
 ggplot(TotalnumStepsPerday, aes(x = steps)) + 
        geom_histogram(fill = "red", binwidth = 1000) + 
@@ -81,7 +82,7 @@ colnames(stepsPer5MinInterval) <- c("interval", "steps")
 
 ##  What is the average daily activity pattern?
 
-```{r}
+```{r , dpi=36, out.height="600px", out.width="600px"}
 
 ggplot(stepsPer5MinInterval, aes(x=interval, y=steps)) +   
         geom_line(color="blue", size=1) +  
@@ -161,7 +162,7 @@ We notice that we do not have any missing values anymore.
 
 ## A histogram of the total number of steps taken every day
 
-```{r}
+```{r, dpi=36, out.height="600px", out.width="600px"}
 
 TotalnumStepsPerday_afterImpute <- aggregate(steps ~ date, imputeMissingData, sum)
 colnames(TotalnumStepsPerday_afterImpute) <- c("date","steps")
@@ -202,7 +203,7 @@ imputeMissingData$dayClassification <- as.factor(imputeMissingData$dayClassifica
 lapply(imputeMissingData,class)
 
 ```
-```{r, eval=FALSE, include=FALSE}
+```{r, echo=TRUE, dpi=36, out.height="600px", out.width="600px"}
 
 ggplot(imputeMissingData, aes(x=interval, y=steps)) + 
         geom_line(color="red") + 
